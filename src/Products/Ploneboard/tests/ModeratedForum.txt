@@ -371,12 +371,42 @@ The owner member should not see 'Edit' button in 'Publish inline':
     ...
     LookupError: label 'Edit'
 
+Edit own rejected comment and upload a file
+-------------------------------------------
+
+A member that can edit his own comment, are able to upload a file
+
+    >>> utils.logoutThenLoginAs(self, browser, 'member1')
+    >>> browser.open(self.forum.absolute_url())
+    >>> browser.getLink('Reject queue').click()
+    >>> browser.getControl('Edit', index=0).click()
+
+Now prepare attachment upload, create a fake file.
+This is taken from an doc test of Products.SimpleAttachment:
+https://github.com/collective/Products.SimpleAttachment/blob/master/src/Products/SimpleAttachment/tests/UploadAttachments.txt
+
+    >>> from StringIO import StringIO
+    >>> file_contents = (r"""{\rtf1\ansi{\fonttbl\f0\fswiss Helvetica;}\f0
+    ...                      Hello!\par This is some {\b bold} text.\par
+    ...                      }""")
+
+Lets upload an attachment
+
+    >>> browser.getControl(name='attachmentTitle').value = 'Attachment 1'
+    >>> upload = browser.getControl(name='attachmentFile')
+    >>> upload.add_file(StringIO(file_contents),
+    ...                 'text/rtf', 'test_file.rtf')
+    >>> browser.getControl(name='form.button.UploadAttachment').click()
+    >>> 'Attachment 1' in browser.contents
+    True
+
 Delete a comment
 ----------------
 
 A member cannot delete a published comment. Verify that there is no 'Delete'
 button present.
-
+    >>> browser.open(self.forum.absolute_url())
+    >>> browser.getLink('Publish inline').click()
     >>> browser.getControl('Delete')
     Traceback (most recent call last):
     ...
