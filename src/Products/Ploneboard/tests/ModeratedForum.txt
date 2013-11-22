@@ -348,6 +348,29 @@ is no 'Edit' button present.
     ...
     LookupError: label 'Edit'
 
+
+Edit own rejected or retracted comment
+--------------------------------------
+
+A member can edit his own comment only if is in rejected or retracted state (in moderated forums)
+
+The owner member should see 'Edit' button in 'Reject queue':
+
+    >>> utils.logoutThenLoginAs(self, browser, 'member1')
+    >>> browser.open(self.forum.absolute_url())
+    >>> browser.getLink('Reject queue').click()
+    >>> browser.getControl('Edit', index=0)
+    <SubmitControl name=None type='submit'>
+
+The owner member should not see 'Edit' button in 'Publish inline':
+
+    >>> browser.open(self.forum.absolute_url())
+    >>> browser.getLink('Publish inline').click()
+    >>> browser.getControl('Edit', index=0)
+    Traceback (most recent call last):
+    ...
+    LookupError: label 'Edit'
+
 Delete a comment
 ----------------
 
