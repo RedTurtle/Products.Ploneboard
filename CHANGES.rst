@@ -19,6 +19,8 @@ Changelog
 - Fix catalog definition in comment_redirect_to_conversation after PloneboardConversation refactoring
   [cekk]
 
+- Add Owner, Manager and Site Administrator role to "Add portal content" perm in
+  rejected and retracted comments [cekk]
 
 3.5 (2014-03-07)
 ----------------
@@ -71,11 +73,6 @@ Changelog
   This fixes a bug when we have frontend url different from backend.
   [cekk]
 
-- Add Owner, Manager and Site Administrator role to "Add portal content" perm in
-  rejected and retracted comments [cekk]
-
-- Add Owner, Manager and Site Administrator role to "Add portal content" perm in
-  rejected and retracted comments [cekk]
 
 3.4 (2013-05-11)
 ----------------
