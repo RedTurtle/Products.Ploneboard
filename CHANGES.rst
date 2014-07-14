@@ -74,6 +74,9 @@ Changelog
 - Add Owner, Manager and Site Administrator role to "Add portal content" perm in
   rejected and retracted comments [cekk]
 
+- Add Owner, Manager and Site Administrator role to "Add portal content" perm in
+  rejected and retracted comments [cekk]
+
 3.4 (2013-05-11)
 ----------------
 
